@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotización - Seguentech</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .header img {
+            max-width: 150px;
+            height: auto;
+        }
+        .header-info {
+            text-align: right;
+        }
+        .header-info p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .header-info h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+        .company-details {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .company-details p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        #productImage {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: #1e3c72;
+            font-weight: bold;
+        }
+        td {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+        }
+        .quantity {
+            width: 60px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+        }
+        #totalValue {
+            font-weight: bold;
+            color: #1e3c72;
+        }
+        .client-info {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .client-info input {
+            padding: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1rem;
+            width: 200px;
+            text-align: center;
+        }
+        .client-info input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .legend {
+            text-align: center;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+        }
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: left;
+        }
+        .footer p {
+            margin: 10px 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .footer .divider {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            margin: 15px auto;
+            width: 80%;
+        }
+        .footer input {
+            padding: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1rem;
+            width: 100px;
+            text-align: center;
+        }
+        .footer input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .signature {
+            margin-top: 20px;
+            text-align: right;
+        }
+        .signature p {
+            margin: 5px 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .total-final {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        textarea {
+            width: 100%;
+            min-height: 50px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            resize: vertical;
+        }
+        .advantages {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            text-align: left;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .advantages ul {
+            padding-left: 20px;
+        }
+        .advantages ul li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Profesional -->
+        <div class="header">
+            <div>
+                <!-- Logo desde Vimeo (reemplaza con tu enlace) -->
+                <img src="https://seguen.tech/wp-content/uploads/2024/11/logo_pagina_oficial_letra_s-removebg-preview.png" alt="Logo de Seguentech">
+                <div class="company-details">
+                    <p><strong>NIT:</strong> 79 547665-3</p>
+                    <p><strong>Dirección:</strong> Carrera 16 Número 79-20</p>
+                    <p><strong>Teléfono:</strong> 315-585-2297</p>
+                </div>
+            </div>
+            <div class="header-info">
+                <p id="fecha"></p>
+                <h2>Cotización N° <input type="text" id="quoteNumber" value="SEG0023" readonly></h2>
+                <p>Asunto: <input type="text" id="quoteSubject" value="Cotizar equipo" readonly></p>
+            </div>
+        </div>
+
+        <!-- Información del Cliente -->
+        <div class="client-info">
+            <input type="text" id="clientName" placeholder="Nombre del Cliente" value="Acopres">
+        </div>
+
+        <!-- Leyenda -->
+        <div class="legend">
+            <p>Es un placer cotizarles el siguiente producto:</p>
+        </div>
+
+        <!-- Contenido Principal -->
+        <h1>Cotización - Seguentech</h1>
+        <!-- Imágenes desde Vimeo (reemplaza con tus enlaces) -->
+        <img id="productImage" src="" alt="Producto">
+        <table>
+            <thead>
+                <tr>
+                    <th>Unidad de Medida</th>
+                    <th>Cantidad</th>
+                    <th>Descripción del Producto</th>
+                    <th>Valor Unitario</th>
+                    <th>Valor Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Fila 1 -->
+                <tr>
+                    <td>
+                        <select id="unitMeasure">
+                            <option value="Unidad">Unidad</option>
+                            <option value="Equipo Portátil">Equipo Portátil</option>
+                            <option value="Computador de Escritorio">Computador de Escritorio</option>
+                            <option value="Monitor">Monitor</option>
+                            <option value="Licencia de Software">Licencia de Software</option>
+                            <option value="Periférico">Periférico</option>
+                        </select>
+                    </td>
+                    <td><input type="number" class="quantity" id="quantity1" value="0" min="0" oninput="updateTotal(1)"></td>
+                    <td><textarea id="productDescription1" placeholder="Descripción del producto">Equipo portátil 1</textarea></td>
+                    <td><input type="text" id="unitPrice1" value="$1,500.00" readonly></td>
+                    <td id="totalValue1">$0.00</td>
+                </tr>
+                <!-- Fila 2 -->
+                <tr>
+                    <td>
+                        <select id="unitMeasure2">
+                            <option value="Unidad">Unidad</option>
+                            <option value="Equipo Portátil">Equipo Portátil</option>
+                            <option value="Computador de Escritorio">Computador de Escritorio</option>
+                            <option value="Monitor">Monitor</option>
+                            <option value="Licencia de Software">Licencia de Software</option>
+                            <option value="Periférico">Periférico</option>
+                        </select>
+                    </td>
+                    <td><input type="number" class="quantity" id="quantity2" value="0" min="0" oninput="updateTotal(2)"></td>
+                    <td><textarea id="productDescription2" placeholder="Descripción del producto"></textarea></td>
+                    <td><input type="text" id="unitPrice2" value="$0.00" readonly></td>
+                    <td id="totalValue2">$0.00</td>
+                </tr>
+                <!-- Fila 3 -->
+                <tr>
+                    <td>
+                        <select id="unitMeasure3">
+                            <option value="Unidad">Unidad</option>
+                            <option value="Equipo Portátil">Equipo Portátil</option>
+                            <option value="Computador de Escritorio">Computador de Escritorio</option>
+                            <option value="Monitor">Monitor</option>
+                            <option value="Licencia de Software">Licencia de Software</option>
+                            <option value="Periférico">Periférico</option>
+                        </select>
+                    </td>
+                    <td><input type="number" class="quantity" id="quantity3" value="0" min="0" oninput="updateTotal(3)"></td>
+                    <td><textarea id="productDescription3" placeholder="Descripción del producto"></textarea></td>
+                    <td><input type="text" id="unitPrice3" value="$0.00" readonly></td>
+                    <td id="totalValue3">$0.00</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Ventajas de elegirnos -->
+        <div class="advantages">
+            <p><strong>¿Por qué elegirnos?</strong></p>
+            <p>Con más de <strong>9 años de experiencia</strong>, en Seguentech nos comprometemos a ofrecerte:</p>
+            <ul>
+                <li><strong>Garantía en cada producto</strong> que adquieras con nosotros.</li>
+                <li><strong>Servicio técnico presencial y en línea</strong> para brindarte soporte cuando lo necesites.</li>
+                <li><strong>Asesoramiento especializado</strong> en licencias, modificaciones de equipos y soluciones tecnológicas.</li>
+            </ul>
+            <p>Gracias por confiar en nosotros. Estamos aquí para acompañarte en cada paso hacia la mejor solución tecnológica.</p>
+        </div>
+
+        <!-- Pie de Página -->
+        <div class="footer">
+            <p class="total-final">Total Final: $<span id="finalTotal">0.00</span></p>
+            <p>IVA: <input type="number" id="iva" placeholder="0" oninput="updateFinalTotal()">%</p>
+            <p>Total con IVA: $<span id="totalWithIVA">0.00</span></p>
+            <div class="divider"></div>
+            <p><strong>Ubicación:</strong> Unilago, Bogotá, Colombia</p>
+            <p><strong>WhatsApp:</strong> 315-751-3697</p>
+            <p><strong>Web:</strong> <a href="http://www.seguen.tech" style="color: #fff; text-decoration: none;">www.seguen.tech</a></p>
+            <div class="divider"></div>
+            <p>Esta cotización tiene una validez de 10 días calendario.</p>
+        </div>
+
+        <!-- Firma del Representante de Ventas -->
+        <div class="signature">
+            <p>Firma del Representante de Ventas:</p>
+            <p>_________________________</p>
+        </div>
+    </div>
+
+    <script>
+        // Función para formatear números con separador de miles (formato colombiano)
+        function formatNumber(number) {
+            return new Intl.NumberFormat('es-CO', {
+                style: 'decimal',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(number);
+        }
+
+        // Función para actualizar el valor total cuando se cambia la cantidad
+        function updateTotal(rowNumber) {
+            const quantity = document.getElementById(`quantity${rowNumber}`).value;
+            const unitPrice = parseFloat(document.getElementById(`unitPrice${rowNumber}`).value.replace(/[^0-9.-]+/g, "")) || 0;
+            const total = quantity * unitPrice;
+            document.getElementById(`totalValue${rowNumber}`).textContent = `$${formatNumber(total)}`;
+            updateFinalTotal();
+        }
+
+        // Función para calcular el total con IVA
+        function updateFinalTotal() {
+            let total = 0;
+            for (let i = 1; i <= 3; i++) {
+                const rowTotal = parseFloat(document.getElementById(`totalValue${i}`).textContent.replace(/[^0-9.-]+/g, "")) || 0;
+                total += rowTotal;
+            }
+            document.getElementById('finalTotal').textContent = formatNumber(total);
+
+            const iva = parseFloat(document.getElementById('iva').value) || 0;
+            const totalWithIVA = total * (1 + iva / 100);
+            document.getElementById('totalWithIVA').textContent = formatNumber(totalWithIVA);
+        }
+
+        // Imágenes desde Vimeo (reemplaza con tus enlaces)
+        const images = [
+            'https://i.vimeocdn.com/video/123456789.jpg', // Ejemplo de imagen 1
+            'https://i.vimeocdn.com/video/987654321.jpg'  // Ejemplo de imagen 2
+        ];
+        let currentImageIndex = 0;
+
+        function changeImage() {
+            document.getElementById('productImage').src = images[currentImageIndex];
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+        }
+
+        // Cambiar imagen cada 3 segundos
+        setInterval(changeImage, 3000);
+        // Inicializar con la primera imagen
+        changeImage();
+
+        // Mostrar la fecha actual
+        const fechaElement = document.getElementById('fecha');
+        const hoy = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        fechaElement.textContent = hoy.toLocaleDateString('es-ES', options);
+    </script>
+</body>
+</html>
